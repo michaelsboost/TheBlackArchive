@@ -3,7 +3,7 @@
 *Open research dossier library for human history, ancient civilizations, archaeology, mythology, UAP cases, NHI claims, witnesses, researchers, government records, technologies, scientific concepts, economics, notes, and sources.*
 
 ![The Black Archive](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/banner.png)
-![The Black Archive Screenshot](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/screenshot.jpeg)
+![The Black Archive Screenshot](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/screenshot.png)
 
 [![MIT License](https://img.shields.io/github/license/michaelsboost/TheBlackArchive)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/TheBlackArchive)](https://github.com/michaelsboost/TheBlackArchive/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/TheBlackArchive/issues)](https://github.com/michaelsboost/TheBlackArchive/issues)
 
