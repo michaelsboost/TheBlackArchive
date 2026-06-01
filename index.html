@@ -115,7 +115,7 @@
         <!-- FLEX LAYOUT: left list/grid + RIGHT DOSSIER PANEL -->
         <div class="flex flex-1 relative">
           <!-- LEFT: MAIN LIST / GRID (existing layout preserved) -->
-          <div class="flex-1 p-4 pb-24 lg:pb-5 overflow-y-auto">
+          <div class="flex-1 p-4 pb-24 lg:pb-5 absolute inset-0 overflow-y-auto">
             <!-- Human Timeline Special View -->
             <div x-show="activeCategory === 'Human Timeline'" x-cloak="">
               <div class="flex justify-between items-center mb-4">
@@ -229,153 +229,151 @@
           <!-- DESKTOP DOSSIER - Single scrollable page (no tabs)          -->
           <!-- Cinematic Hero + Overview + Details Grid + Connections + Sources + Notes -->
           <!-- ============================================================ -->
-          <div class="hidden lg:block glass-panel bg-black/40 backdrop-blur-md rounded-2xl border border-gray-800/80 transition-all absolute inset-4" x-show="selectedRecord" x-transition="">
-            <div class="h-full overflow-y-auto">
-              <!-- Back button -->
-              <div class="sticky top-0 z-10 bg-black/80 p-3 border-b border-cyan-800/50">
-                <button @click="selectedRecord = null;" class="text-sm text-cyan-400 hover:text-cyan-300 transition flex items-center gap-2">
-                  <i class="fas fa-arrow-left"></i> BACK TO ARCHIVE
-                </button>
-              </div>
-              <!-- ===== 1. CINEMATIC HERO SECTION ===== -->
-              <div class="relative h-80 overflow-hidden">
-                <img :src="selectedRecord.image" class="absolute inset-0 w-full h-full object-cover" onerror="this.src = 'https://picsum.photos/id/104/1200/400'">
-                <div class="absolute inset-0 hero-image-overlay bg-gradient-to-r from-black via-black/70 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
-                  <div class="flex flex-wrap justify-between items-end gap-4">
-                    <div class="flex-1">
-                      <div class="text-[10px] font-mono text-cyan-400 tracking-wider">
-                        <i class="fas fa-folder-open mr-1"></i> RESEARCH DOSSIER
-                      </div>
-                      <h1 class="text-4xl font-bold tracking-tight text-white mt-1" x-text="selectedRecord.name"></h1>
-                      <div class="flex flex-wrap gap-2 mt-3">
-                        <span class="text-xs px-3 py-1 rounded-full bg-cyan-900/80 border border-cyan-500"><i class="fas fa-tag mr-1"></i>
-                          <span x-text="selectedRecord.claimClassification || 'Alleged'"></span></span>
-                        <span class="text-xs px-3 py-1 rounded-full" :class="getKardashevColorClass(selectedRecord.kardashev)"><i class="fas fa-chart-line mr-1"></i>
-                          <span x-text="formatKardashev(selectedRecord.kardashev)"></span></span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="fas fa-layer-group mr-1"></i>
-                          <span x-text="selectedRecord.civilizationType || selectedRecord.category"></span></span>
-                        <span x-show="selectedRecord.era || selectedRecord.dateRange" class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="far fa-calendar-alt mr-1"></i>
-                          <span x-text="selectedRecord.era || selectedRecord.dateRange"></span></span>
-                        <span x-show="selectedRecord.region" class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="fas fa-map-marker-alt mr-1"></i>
-                          <span x-text="selectedRecord.region"></span></span>
-                      </div>
+          <div class="hidden lg:block glass-panel bg-black/40 backdrop-blur-md rounded-2xl border border-gray-800/80 transition-all absolute inset-0 overflow-y-auto" x-show="selectedRecord" x-transition="">
+            <!-- Back button -->
+            <div class="sticky top-0 z-10 bg-black/80 p-3 border-b border-cyan-800/50">
+              <button @click="selectedRecord = null;" class="text-sm text-cyan-400 hover:text-cyan-300 transition flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> BACK TO ARCHIVE
+              </button>
+            </div>
+            <!-- ===== 1. CINEMATIC HERO SECTION ===== -->
+            <div class="relative h-80 overflow-hidden">
+              <img :src="selectedRecord.image" class="absolute inset-0 w-full h-full object-cover" onerror="this.src = 'https://picsum.photos/id/104/1200/400'">
+              <div class="absolute inset-0 hero-image-overlay bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+                <div class="flex flex-wrap justify-between items-end gap-4">
+                  <div class="flex-1">
+                    <div class="text-[10px] font-mono text-cyan-400 tracking-wider">
+                      <i class="fas fa-folder-open mr-1"></i> RESEARCH DOSSIER
+                    </div>
+                    <h1 class="text-4xl font-bold tracking-tight text-white mt-1" x-text="selectedRecord.name"></h1>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                      <span class="text-xs px-3 py-1 rounded-full bg-cyan-900/80 border border-cyan-500"><i class="fas fa-tag mr-1"></i>
+                        <span x-text="selectedRecord.claimClassification || 'Alleged'"></span></span>
+                      <span class="text-xs px-3 py-1 rounded-full" :class="getKardashevColorClass(selectedRecord.kardashev)"><i class="fas fa-chart-line mr-1"></i>
+                        <span x-text="formatKardashev(selectedRecord.kardashev)"></span></span>
+                      <span class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="fas fa-layer-group mr-1"></i>
+                        <span x-text="selectedRecord.civilizationType || selectedRecord.category"></span></span>
+                      <span x-show="selectedRecord.era || selectedRecord.dateRange" class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="far fa-calendar-alt mr-1"></i>
+                        <span x-text="selectedRecord.era || selectedRecord.dateRange"></span></span>
+                      <span x-show="selectedRecord.region" class="text-xs px-3 py-1 rounded-full bg-gray-800/80"><i class="fas fa-map-marker-alt mr-1"></i>
+                        <span x-text="selectedRecord.region"></span></span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="p-6 space-y-8">
-                <!-- ===== 2. OVERVIEW SECTION ===== -->
-                <div class="bg-black/30 rounded-xl p-6 border-l-2 border-cyan-500">
-                  <h3 class="text-sm font-mono text-cyan-400 mb-3">
-                    <i class="fas fa-scroll mr-2"></i> OVERVIEW
-                  </h3>
-                  <p class="text-gray-300 leading-relaxed" x-text="selectedRecord.fullDescription || selectedRecord.shortDesc || selectedRecord.description || 'No further description recorded.'"></p>
+            </div>
+            <div class="p-6 space-y-8">
+              <!-- ===== 2. OVERVIEW SECTION ===== -->
+              <div class="bg-black/30 rounded-xl p-6 border-l-2 border-cyan-500">
+                <h3 class="text-sm font-mono text-cyan-400 mb-3">
+                  <i class="fas fa-scroll mr-2"></i> OVERVIEW
+                </h3>
+                <p class="text-gray-300 leading-relaxed" x-text="selectedRecord.fullDescription || selectedRecord.shortDesc || selectedRecord.description || 'No further description recorded.'"></p>
+              </div>
+              <!-- ===== 3. PRIMARY DETAILS GRID (only non-empty fields) ===== -->
+              <div>
+                <h3 class="text-sm font-mono text-cyan-400 mb-4">
+                  <i class="fas fa-info-circle mr-2"></i> ARCHIVE DETAILS
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <template x-for="field in detailsFieldsList" :key="field.key">
+                    <div x-show="selectedRecord[field.key] &amp;&amp; selectedRecord[field.key] !== ''" class="bg-black/40 p-4 rounded-xl border border-gray-800/60 hover:border-cyan-800/50 transition">
+                      <div class="text-[9px] font-mono text-amber-400 uppercase tracking-wider" x-text="field.label"></div>
+                      <div class="text-sm text-gray-200 mt-1" x-text="selectedRecord[field.key]"></div>
+                    </div>
+                  </template>
                 </div>
-                <!-- ===== 3. PRIMARY DETAILS GRID (only non-empty fields) ===== -->
-                <div>
-                  <h3 class="text-sm font-mono text-cyan-400 mb-4">
-                    <i class="fas fa-info-circle mr-2"></i> ARCHIVE DETAILS
-                  </h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <template x-for="field in detailsFieldsList" :key="field.key">
-                      <div x-show="selectedRecord[field.key] &amp;&amp; selectedRecord[field.key] !== ''" class="bg-black/40 p-4 rounded-xl border border-gray-800/60 hover:border-cyan-800/50 transition">
-                        <div class="text-[9px] font-mono text-amber-400 uppercase tracking-wider" x-text="field.label"></div>
-                        <div class="text-sm text-gray-200 mt-1" x-text="selectedRecord[field.key]"></div>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-                <!-- ===== 4. ASSOCIATED CONNECTIONS (People, Cases, Locations, Technologies) ===== -->
-                <div x-show="hasAnyConnections()" class="space-y-6">
-                  <h3 class="text-sm font-mono text-cyan-400 mb-3">
-                    <i class="fas fa-link mr-2"></i> ASSOCIATED CONNECTIONS
-                  </h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div x-show="selectedRecord.associatedWitnessesList?.length">
-                      <h4 class="text-xs font-mono text-cyan-400 mb-2">
-                        <i class="fas fa-users"></i> Witnesses / Researchers
-                      </h4>
-                      <div class="flex flex-wrap gap-2">
-                        <template x-for="w in selectedRecord.associatedWitnessesList"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60 hover:text-cyan-300 transition" @click="openDossierByName(w)" x-text="w"></span></template>
-                      </div>
-                    </div>
-                    <div x-show="selectedRecord.associatedCases?.length">
-                      <h4 class="text-xs font-mono text-cyan-400 mb-2">
-                        <i class="fas fa-folder-open"></i> Associated Cases
-                      </h4>
-                      <div class="flex flex-wrap gap-2">
-                        <template x-for="c in selectedRecord.associatedCases"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(c)" x-text="c"></span></template>
-                      </div>
-                    </div>
-                    <div x-show="selectedRecord.associatedLocations?.length">
-                      <h4 class="text-xs font-mono text-cyan-400 mb-2">
-                        <i class="fas fa-map-marker-alt"></i> Locations
-                      </h4>
-                      <div class="flex flex-wrap gap-2">
-                        <template x-for="l in selectedRecord.associatedLocations"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(l)" x-text="l"></span></template>
-                      </div>
-                    </div>
-                    <div x-show="selectedRecord.associatedTechnologies?.length">
-                      <h4 class="text-xs font-mono text-cyan-400 mb-2">
-                        <i class="fas fa-microchip"></i> Technologies
-                      </h4>
-                      <div class="flex flex-wrap gap-2">
-                        <template x-for="t in selectedRecord.associatedTechnologies"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(t)" x-text="t"></span></template>
-                      </div>
+              </div>
+              <!-- ===== 4. ASSOCIATED CONNECTIONS (People, Cases, Locations, Technologies) ===== -->
+              <div x-show="hasAnyConnections()" class="space-y-6">
+                <h3 class="text-sm font-mono text-cyan-400 mb-3">
+                  <i class="fas fa-link mr-2"></i> ASSOCIATED CONNECTIONS
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div x-show="selectedRecord.associatedWitnessesList?.length">
+                    <h4 class="text-xs font-mono text-cyan-400 mb-2">
+                      <i class="fas fa-users"></i> Witnesses / Researchers
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <template x-for="w in selectedRecord.associatedWitnessesList"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60 hover:text-cyan-300 transition" @click="openDossierByName(w)" x-text="w"></span></template>
                     </div>
                   </div>
-                </div>
-                <!-- ===== 5. SOURCES SECTION (Rich source cards) ===== -->
-                <div x-show="hasSources()">
-                  <h3 class="text-sm font-mono text-emerald-400 mb-4">
-                    <i class="fas fa-book-open mr-2"></i> REFERENCED SOURCES
-                  </h3>
-                  <div class="space-y-3">
-                    <!-- Handle legacy string sources -->
-                    <template x-if="selectedRecord.sources &amp;&amp; typeof selectedRecord.sources === 'string'">
-                      <div class="bg-black/40 rounded-xl p-4 border border-gray-700">
-                        <p class="text-sm text-gray-300" x-text="selectedRecord.sources"></p>
-                      </div>
-                    </template>
-                    <!-- Handle rich source array -->
-                    <template x-for="src in (selectedRecord.sourcesArray || [])" :key="src.title">
-                      <div class="source-card bg-black/40 rounded-xl p-4 border border-gray-700/60 hover:border-emerald-500/50 transition">
-                        <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
-                          <h4 class="font-bold text-cyan-300" x-text="src.title"></h4>
-                          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/50 text-emerald-300" x-text="src.type"></span>
-                        </div>
-                        <div class="flex flex-wrap gap-3 text-xs text-gray-400 mb-2">
-                          <span x-show="src.author"><i class="fas fa-user"></i>
-                            <span x-text="src.author"></span></span><span x-show="src.year"><i class="far fa-calendar"></i>
-                            <span x-text="src.year"></span></span>
-                        </div>
-                        <p x-show="src.note" class="text-xs text-gray-400 mb-3" x-text="src.note"></p>
-                        <a x-show="src.url" :href="src.url" target="_blank" class="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 transition"><i class="fas fa-external-link-alt"></i> Access Source</a>
-                      </div>
-                    </template>
+                  <div x-show="selectedRecord.associatedCases?.length">
+                    <h4 class="text-xs font-mono text-cyan-400 mb-2">
+                      <i class="fas fa-folder-open"></i> Associated Cases
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <template x-for="c in selectedRecord.associatedCases"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(c)" x-text="c"></span></template>
+                    </div>
+                  </div>
+                  <div x-show="selectedRecord.associatedLocations?.length">
+                    <h4 class="text-xs font-mono text-cyan-400 mb-2">
+                      <i class="fas fa-map-marker-alt"></i> Locations
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <template x-for="l in selectedRecord.associatedLocations"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(l)" x-text="l"></span></template>
+                    </div>
+                  </div>
+                  <div x-show="selectedRecord.associatedTechnologies?.length">
+                    <h4 class="text-xs font-mono text-cyan-400 mb-2">
+                      <i class="fas fa-microchip"></i> Technologies
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <template x-for="t in selectedRecord.associatedTechnologies"><span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full cursor-pointer hover:bg-cyan-900/60" @click="openDossierByName(t)" x-text="t"></span></template>
+                    </div>
                   </div>
                 </div>
-                <!-- ===== 6. NOTES, FAVORITE & COPY SECTION ===== -->
-                <div class="bg-black/40 rounded-xl p-5 border border-cyan-800/40">
-                  <h3 class="text-sm font-mono text-cyan-400 mb-3">
-                    <i class="fas fa-pen-alt mr-2"></i> RESEARCHER NOTES
-                  </h3>
-                  <textarea x-model="notesStore[selectedRecord.id]" @change="saveLocal()" rows="3" class="w-full bg-black/60 border border-cyan-800 rounded-lg p-3 text-sm text-gray-200 focus:ring-1 focus:ring-cyan-500" placeholder="Add investigation notes, cross-references, personal remarks..."></textarea>
-                  <div class="flex flex-wrap gap-3 mt-4">
-                    <button @click="toggleFavorite(selectedRecord.id)" class="text-sm flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition">
-                      <i :class="favoritesIds.has(selectedRecord.id) ? 'fas fa-star text-amber-400' : 'far fa-star'"></i>
-                      <span x-text="favoritesIds.has(selectedRecord.id) ? 'In Favorites' : 'Add to Favorites'"></span>
-                    </button>
-                    <button @click="copySummaryToClipboard(selectedRecord)" class="text-sm flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition">
-                      <i class="fas fa-copy"></i> Copy Summary
-                    </button>
-                  </div>
+              </div>
+              <!-- ===== 5. SOURCES SECTION (Rich source cards) ===== -->
+              <div x-show="hasSources()">
+                <h3 class="text-sm font-mono text-emerald-400 mb-4">
+                  <i class="fas fa-book-open mr-2"></i> REFERENCED SOURCES
+                </h3>
+                <div class="space-y-3">
+                  <!-- Handle legacy string sources -->
+                  <template x-if="selectedRecord.sources &amp;&amp; typeof selectedRecord.sources === 'string'">
+                    <div class="bg-black/40 rounded-xl p-4 border border-gray-700">
+                      <p class="text-sm text-gray-300" x-text="selectedRecord.sources"></p>
+                    </div>
+                  </template>
+                  <!-- Handle rich source array -->
+                  <template x-for="src in (selectedRecord.sourcesArray || [])" :key="src.title">
+                    <div class="source-card bg-black/40 rounded-xl p-4 border border-gray-700/60 hover:border-emerald-500/50 transition">
+                      <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                        <h4 class="font-bold text-cyan-300" x-text="src.title"></h4>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/50 text-emerald-300" x-text="src.type"></span>
+                      </div>
+                      <div class="flex flex-wrap gap-3 text-xs text-gray-400 mb-2">
+                        <span x-show="src.author"><i class="fas fa-user"></i>
+                          <span x-text="src.author"></span></span><span x-show="src.year"><i class="far fa-calendar"></i>
+                          <span x-text="src.year"></span></span>
+                      </div>
+                      <p x-show="src.note" class="text-xs text-gray-400 mb-3" x-text="src.note"></p>
+                      <a x-show="src.url" :href="src.url" target="_blank" class="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 transition"><i class="fas fa-external-link-alt"></i> Access Source</a>
+                    </div>
+                  </template>
                 </div>
-                <div class="text-[10px] text-gray-500 text-center py-3 border-t border-gray-800">
-                  All data presented for research &amp; critical analysis. Not verified
-                  intelligence.
+              </div>
+              <!-- ===== 6. NOTES, FAVORITE & COPY SECTION ===== -->
+              <div class="bg-black/40 rounded-xl p-5 border border-cyan-800/40">
+                <h3 class="text-sm font-mono text-cyan-400 mb-3">
+                  <i class="fas fa-pen-alt mr-2"></i> RESEARCHER NOTES
+                </h3>
+                <textarea x-model="notesStore[selectedRecord.id]" @change="saveLocal()" rows="3" class="w-full bg-black/60 border border-cyan-800 rounded-lg p-3 text-sm text-gray-200 focus:ring-1 focus:ring-cyan-500" placeholder="Add investigation notes, cross-references, personal remarks..."></textarea>
+                <div class="flex flex-wrap gap-3 mt-4">
+                  <button @click="toggleFavorite(selectedRecord.id)" class="text-sm flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition">
+                    <i :class="favoritesIds.has(selectedRecord.id) ? 'fas fa-star text-amber-400' : 'far fa-star'"></i>
+                    <span x-text="favoritesIds.has(selectedRecord.id) ? 'In Favorites' : 'Add to Favorites'"></span>
+                  </button>
+                  <button @click="copySummaryToClipboard(selectedRecord)" class="text-sm flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition">
+                    <i class="fas fa-copy"></i> Copy Summary
+                  </button>
                 </div>
+              </div>
+              <div class="text-[10px] text-gray-500 text-center py-3 border-t border-gray-800">
+                All data presented for research &amp; critical analysis. Not verified
+                intelligence.
               </div>
             </div>
           </div>
@@ -516,6 +514,7 @@
     </div>
 
     <script src="src/script.js"></script>
+    <script src="https://michaelsboost.com/TailwindCSSMod/tailwind-mod.min.js"></script>
     <!-- <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
