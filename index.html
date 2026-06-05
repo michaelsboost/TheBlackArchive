@@ -141,6 +141,14 @@
               <button @click="shareApp()" class="p-2 rounded-lg">
                 <i class="fas fa-share-alt text-emerald-400"></i>
               </button>
+              <!-- 🚀 GITHUB LINK: project repository in menu bar -->
+              <button 
+                @click="window.open('https://github.com/michaelsboost/TheBlackArchive', '_blank')" 
+                class="p-2 rounded-lg bg-cyan-900/40 hover:bg-cyan-800 transition"
+                aria-label="GitHub Repository"
+                title="View source on GitHub">
+                <i class="fab fa-github text-white text-base"></i>
+              </button>
             </div>
           </div>
           <div
