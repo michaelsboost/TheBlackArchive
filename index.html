@@ -84,13 +84,7 @@
         </div>
         <div class="space-y-1.5">
           <template x-for="cat in categories" :key="cat.id">
-            <button @click="
-                activeCategory = cat.id;
-                searchTerm = '';
-                currentHumanEra = 'All';
-                selectedRecord = null;
-                saveLocal();
-              " class="w-full text-left px-6 py-3 text-sm transition-all border-l-2 border-transparent hover:border-cyan-500 flex items-center gap-3" 
+            <button @click="selectCategory(cat.id)" class="w-full text-left px-6 py-3 text-sm transition-all border-l-2 border-transparent hover:border-cyan-500 flex items-center gap-3" 
               :class="activeCategory === cat.id ? 'bg-cyan-900/50 text-cyan-300 border-l-4 border-cyan-400' : 'hover:bg-white/5 text-gray-300'">
               <span class="flex items-center gap-3"><i :class="cat.icon" class="w-5"></i><span x-text="cat.label"></span></span>
               <span x-show="getCountForCategory(cat.id)" x-text="getCountForCategory(cat.id)" class="text-xs bg-black/50 px-2 py-0.5 rounded-full"></span>
@@ -166,7 +160,7 @@
           class="lg:hidden overflow-x-auto whitespace-nowrap px-3 py-2 gap-2 flex border-b border-cyan-900/30 bg-black/20">
           <template x-for="cat in categories" :key="cat.id">
             <button
-              @click="activeCategory = cat.id; searchTerm = ''; currentHumanEra='All'; selectedRecord = null"
+              @click="selectCategory(cat.id)"
               class="px-3 py-1.5 rounded-full text-xs font-mono transition-all flex-shrink-0"
               :class="activeCategory === cat.id ? 'bg-cyan-800 text-white border border-cyan-400' : 'bg-gray-900/70 text-gray-300 border border-gray-700'">
               <i :class="cat.icon" class="mr-1"></i>
@@ -366,7 +360,7 @@
               <div
                 class="sticky top-0 z-10 bg-black/80 p-3 border-b border-cyan-800/50">
                 <button
-                  @click="selectedRecord = null;"
+                  @click="closeDossier()"
                   class="text-sm text-cyan-400 hover:text-cyan-300 transition flex items-center gap-2">
                   <i class="fas fa-arrow-left"></i> BACK TO ARCHIVE
                 </button>
@@ -615,10 +609,10 @@
       <!-- ============================================================ -->
       <!-- MOBILE DOSSIER MODAL -->
       <!-- ============================================================ -->
-      <div x-show="selectedRecord" x-cloak="" class="lg:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-md overflow-y-auto" @click.away="selectedRecord = null">
+      <div x-show="selectedRecord" x-cloak="" class="lg:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-md overflow-y-auto" @click.away="closeDossier()">
         <div class="min-h-screen p-5 pb-24 relative">
           <div class="mb-4">
-            <button @click="selectedRecord = null;" class="text-sm text-cyan-400 flex items-center gap-2">
+            <button @click="closeDossier()" class="text-sm text-cyan-400 flex items-center gap-2">
               <i class="fas fa-arrow-left"></i> BACK
             </button>
           </div>

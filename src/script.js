@@ -117,6 +117,7 @@ function blackArchive() {
     currentHumanEra: "All",
     toggleFavoritesOnly: false,
     notesSearch: "",
+    routeListener: null,
     detailsFieldsList: [
       {
         key: "aliases",
@@ -194,13 +195,13 @@ function blackArchive() {
     },
     openDossierById(id) {
       let found = this.allItems.find((i) => i.id === id);
-      if (found) this.selectedRecord = found;
+      if (found) this.openDossier(found);
     },
     openDossierByName(name) {
       let found = this.allItems.find(
         (i) => i.name.toLowerCase() === name.toLowerCase() || i.id === name,
       );
-      if (found) this.selectedRecord = found;
+      if (found) this.openDossier(found);
       else alert(`No matching record found for "${name}"`);
     },
     deleteNote(id) {
@@ -235,9 +236,85 @@ function blackArchive() {
       this.buildFullDataset();
       this.loadLocal();
 
+      this.initializeRouting();
+
       this.$watch('activeCategory', value => {
         localStorage.setItem('bcategory', value);
       });
+    },
+    categoryHash(category = this.activeCategory) {
+      return `#/category/${encodeURIComponent(category)}`;
+    },
+    dossierHash(id) {
+      return `#/dossier/${encodeURIComponent(id)}`;
+    },
+    parseRoute() {
+      const match = window.location.hash.match(/^#\/(category|dossier)\/([^/?#]+)/);
+      if (!match) return null;
+      try {
+        return { type: match[1], value: decodeURIComponent(match[2]) };
+      } catch (error) {
+        return null;
+      }
+    },
+    applyRoute() {
+      const route = this.parseRoute();
+      if (!route) return false;
+
+      if (route.type === "dossier") {
+        const found = this.allItems.find((item) => item.id === route.value);
+        if (!found) return false;
+        this.activeCategory = found.category;
+        this.selectedRecord = found;
+        return true;
+      }
+
+      const validCategory = this.categories.some((cat) => cat.id === route.value);
+      if (!validCategory) return false;
+      this.activeCategory = route.value;
+      this.selectedRecord = null;
+      return true;
+    },
+    initializeRouting() {
+      const initialRoute = this.parseRoute();
+
+      // A directly opened dossier still gets an in-app page beneath it, so an
+      // Android back swipe closes the dossier instead of immediately closing the app.
+      if (initialRoute?.type === "dossier") {
+        const found = this.allItems.find((item) => item.id === initialRoute.value);
+        if (found) {
+          const dossierHash = this.dossierHash(found.id);
+          history.replaceState({ blackArchive: true }, "", this.categoryHash(found.category));
+          history.pushState({ blackArchive: true }, "", dossierHash);
+          this.applyRoute();
+        } else {
+          history.replaceState({ blackArchive: true }, "", this.categoryHash());
+        }
+      } else if (!this.applyRoute()) {
+        history.replaceState({ blackArchive: true }, "", this.categoryHash());
+      }
+
+      this.routeListener = () => {
+        if (!this.applyRoute()) {
+          history.replaceState({ blackArchive: true }, "", this.categoryHash());
+          this.selectedRecord = null;
+        }
+      };
+      window.addEventListener("hashchange", this.routeListener);
+    },
+    selectCategory(category) {
+      if (!this.categories.some((cat) => cat.id === category)) return;
+      const nextHash = this.categoryHash(category);
+      this.activeCategory = category;
+      this.searchTerm = "";
+      this.currentHumanEra = "All";
+      this.selectedRecord = null;
+      if (window.location.hash !== nextHash)
+        history.pushState({ blackArchive: true }, "", nextHash);
+    },
+    closeDossier() {
+      if (this.parseRoute()?.type === "dossier") history.back();
+      else this.selectedRecord = null;
     },
     buildFullDataset() {
       this.allItems = generateFullArchive();
@@ -283,6 +360,9 @@ function blackArchive() {
     },
     openDossier(r) {
       this.selectedRecord = r;
+      const nextHash = this.dossierHash(r.id);
+      if (window.location.hash !== nextHash)
+        history.pushState({ blackArchive: true }, "", nextHash);
     },
     toggleFavorite(id) {
       if (this.favoritesIds.has(id)) this.favoritesIds.delete(id);
@@ -308,8 +388,9 @@ function blackArchive() {
     },
     randomDossier() {
       if (this.allItems.length)
-        this.selectedRecord =
-          this.allItems[Math.floor(Math.random() * this.allItems.length)];
+        this.openDossier(
+          this.allItems[Math.floor(Math.random() * this.allItems.length)],
+        );
     },
     hasAnyConnections() {
       return (
