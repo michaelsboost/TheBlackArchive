@@ -1,10 +1,11 @@
 # THE BLACK ARCHIVE
 
-*Open research dossier library for human history, ancient civilizations, archaeology, mythology, UAP cases, NHI claims, witnesses, researchers, government records, technologies, scientific concepts, economics, notes, and sources.*
+*Open research dossier library for human history, ancient civilizations, archaeology, mythology, UAP cases, NHI claims, witnesses, researchers, government records, technologies, scientific concepts, calendars, symbolic systems, economics, notes, and sources.*
 
 ![The Black Archive](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/banner.png)
 ![The Black Archive Screenshot](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/screenshot.png)
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/TheBlackArchive/)
 [![MIT License](https://img.shields.io/github/license/michaelsboost/TheBlackArchive)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/TheBlackArchive)](https://github.com/michaelsboost/TheBlackArchive/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/TheBlackArchive/issues)](https://github.com/michaelsboost/TheBlackArchive/issues)
 
 ---
@@ -13,7 +14,7 @@
 
 The Black Archive is an open-source research library built as a single-scroll dossier system.
 
-It organizes documented history, ancient civilizations, archaeological records, mythology, UAP cases, non-human intelligence claims, witnesses, researchers, government/intelligence topics, technologies, scientific concepts, economics, and source material into searchable records.
+It organizes documented history, ancient civilizations, archaeological records, mythology, UAP cases, non-human intelligence claims, witnesses, researchers, government/intelligence topics, technologies, scientific concepts, calendars, symbolic systems, economics, and source material into searchable records.
 
 Each archive entry is designed like a dossier, with structured fields such as:
 
@@ -59,6 +60,8 @@ You can explore topics such as:
 * researchers and witnesses
 * advanced or speculative technologies
 * scientific concepts
+* calendars and timekeeping systems
+* gematria, isopsephy, numerals, and number symbolism
 * economic systems
 
 Some entries are historically documented.
@@ -86,6 +89,7 @@ The Black Archive includes major research sections such as:
 * Intelligence & Government
 * Technologies
 * Scientific Concepts
+* Calendars & Symbolic Systems
 * Source Library
 * Economics
 * Favorites
@@ -99,6 +103,8 @@ The Black Archive includes major research sections such as:
 * ✅ Searchable archive records
 * ✅ Human timeline filtering
 * ✅ Category-based browsing
+* ✅ Shareable links for categories and individual dossiers
+* ✅ Browser and Android back-gesture navigation
 * ✅ Random dossier button
 * ✅ Favorites system
 * ✅ Personal notes system
@@ -116,6 +122,7 @@ The Black Archive includes major research sections such as:
 * ✅ Skepticism and controversy notes
 * ✅ Web Share API support
 * ✅ Fully client-side
+* ✅ Installable PWA support
 * ✅ Open source
 
 ---
@@ -206,13 +213,37 @@ git clone https://github.com/michaelsboost/TheBlackArchive.git
 cd TheBlackArchive
 ```
 
-Start a local server:
+Install the development dependencies:
+
+```bash
+npm install
+```
+
+Build the JavaScript and CSS bundles:
+
+```bash
+npm run build
+```
+
+Start the development server:
+
+```bash
+npm run serve
+```
+
+Then open:
+
+```txt
+http://localhost:8081
+```
+
+For a quick preview without installing the npm development tools, you can also run:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open:
+and open:
 
 ```txt
 http://localhost:8000
