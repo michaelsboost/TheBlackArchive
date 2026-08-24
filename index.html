@@ -4,7 +4,7 @@
     <title>The Black Archive | Comprehensive Encyclopedia of Claims & Testimony</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content">
-    <meta name="description" content="The most attractive description ever!">
+    <meta name="description" content="An open research archive separating documented history, science, sustainable technologies, testimony, disputed claims, and speculation through sourced critical study.">
     <meta name="author" content="Michael Schwartz">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="The Black Archive | Comprehensive Encyclopedia of Claims & Testimony">
@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://michaelsboost.com/TheBlackArchive/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="The Black Archive | Comprehensive Encyclopedia of Claims & Testimony" />
-    <meta property="og:description" content="The most attractive description ever!" />
+    <meta property="og:description" content="Explore documented history, science, sustainable technologies, testimony, disputed claims, and speculation in one sourced critical-research archive." />
     <meta property="og:image"       content="https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/banner.png" />
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.svg">
@@ -214,7 +214,7 @@
                       <img
                         :src="item.image"
                         class="w-full h-full object-cover"
-                        onerror="this.src = 'https://picsum.photos/id/1/80/80'" />
+                        onerror="this.src = 'imgs/logo-192x192.png'" />
                     </div>
                     <div class="flex-1">
                       <div class="flex flex-wrap justify-between items-start gap-1">
@@ -252,7 +252,7 @@
                     <img
                       :src="record.image"
                       class="w-full h-full object-cover"
-                      onerror="this.src = 'https://picsum.photos/id/95/300/200'" />
+                      onerror="this.src = 'imgs/banner.png'" />
                     <div
                       class="absolute top-2 right-2 bg-black/70 rounded-full px-2 py-0.5 text-[10px]">
                       <i :class="record.icon" class="text-cyan-300"></i>
@@ -376,7 +376,7 @@
                 <img
                   :src="selectedRecord.image"
                   class="absolute inset-0 w-full h-full object-cover"
-                  onerror="this.src = 'https://picsum.photos/id/104/1200/400'" />
+                  onerror="this.src = 'imgs/banner.png'" />
                 <div
                   class="absolute inset-0 hero-image-overlay bg-gradient-to-r from-black via-black/70 to-transparent"></div>
                 <div
@@ -623,7 +623,7 @@
             </button>
           </div>
           <div class="relative h-56 rounded-xl overflow-hidden">
-            <img :src="selectedRecord.image" class="w-full h-full object-cover" onerror="this.src = 'https://picsum.photos/id/104/400/300'">
+            <img :src="selectedRecord.image" class="w-full h-full object-cover" onerror="this.src = 'imgs/banner.png'">
             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
             <div class="absolute bottom-2 left-2 text-[10px] bg-black/70 px-2 rounded-full" x-text="selectedRecord.claimClassification"></div>
           </div>
@@ -747,7 +747,7 @@
 
     <script src="dist/script.js"></script>
     <!-- <script src="https://michaelsboost.com/TailwindCSSMod/tailwind-mod.min.js"></script> -->
-    <!-- <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
+    <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js').then(reg => {
@@ -769,6 +769,6 @@
           registration.active.postMessage({ type: 'SKIP_WAITING' });
         });
       }
-    </script> -->
+    </script>
   </body>
 </html>

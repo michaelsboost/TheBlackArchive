@@ -1,4 +1,4 @@
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 export default {
   input: 'src/script.js', // entry point to your Javascript
@@ -10,6 +10,6 @@ export default {
   plugins: [
     
     
-    terser() // minifies the JavaScript
+    terser({ maxWorkers: 1 }) // minifies the JavaScript
   ]
 };
