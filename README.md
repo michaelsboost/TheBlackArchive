@@ -1,12 +1,14 @@
 # THE BLACK ARCHIVE
 
+**Version 1.1.0** · **345 research dossiers**
+
 *Open research dossier library for human history, ancient civilizations, archaeology, mythology, UAP cases, NHI claims, witnesses, researchers, government records, technologies, scientific concepts, calendars, symbolic systems, economics, notes, and sources.*
 
 ![The Black Archive](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/banner.png)
 ![The Black Archive Screenshot](https://raw.githubusercontent.com/michaelsboost/TheBlackArchive/main/imgs/screenshot.png)
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://michaelsboost.com/TheBlackArchive/)
-[![MIT License](https://img.shields.io/github/license/michaelsboost/TheBlackArchive)](LICENSE)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/TheBlackArchive)](https://github.com/michaelsboost/TheBlackArchive/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/TheBlackArchive/issues)](https://github.com/michaelsboost/TheBlackArchive/issues)
+[![MIT License](https://img.shields.io/github/license/michaelsboost/TheBlackArchive)](LICENSE.md)  [![GitHub Stars](https://img.shields.io/github/stars/michaelsboost/TheBlackArchive)](https://github.com/michaelsboost/TheBlackArchive/stargazers)  [![GitHub Issues](https://img.shields.io/github/issues/michaelsboost/TheBlackArchive/issues)](https://github.com/michaelsboost/TheBlackArchive/issues)
 
 ---
 
@@ -14,7 +16,7 @@
 
 The Black Archive is an open-source research library built as a single-scroll dossier system.
 
-It organizes documented history, ancient civilizations, archaeological records, mythology, UAP cases, non-human intelligence claims, witnesses, researchers, government/intelligence topics, technologies, scientific concepts, calendars, symbolic systems, economics, and source material into searchable records.
+It organizes documented history, ancient civilizations, archaeological records, mythology, UAP cases, non-human intelligence claims, witnesses, researchers, government/intelligence topics, technologies, scientific concepts, health and alternative medicine, calendars, symbolic systems, economics, and source material into searchable records.
 
 Each archive entry is designed like a dossier, with structured fields such as:
 
@@ -63,6 +65,8 @@ You can explore topics such as:
 * calendars and timekeeping systems
 * gematria, isopsephy, numerals, and number symbolism
 * economic systems
+* established and unconventional energy science
+* health and alternative-medicine claims
 
 Some entries are historically documented.
 
@@ -89,6 +93,7 @@ The Black Archive includes major research sections such as:
 * Intelligence & Government
 * Technologies
 * Scientific Concepts
+* Health & Alternative Medicine
 * Calendars & Symbolic Systems
 * Source Library
 * Economics
@@ -112,7 +117,9 @@ The Black Archive includes major research sections such as:
 * ✅ Export notes as JSON
 * ✅ LocalStorage persistence
 * ✅ Source lists
+* ✅ Clickable source cards
 * ✅ Related entries
+* ✅ Alias-based dossier lookup
 * ✅ Associated witnesses
 * ✅ Associated cases
 * ✅ Associated locations
@@ -138,6 +145,12 @@ It is designed for people who want to compare claims, follow connections, review
 The Black Archive is not a belief system.
 
 It is a research tool.
+
+---
+
+## ⚡ Version 1.1.0
+
+Version 1.1.0 expands The Black Archive to 345 dossiers. It adds a broad science-and-energy collection covering thermoelectricity, high voltage, plasma, quantum-vacuum concepts, extraordinary-energy claims, nuclear systems, hydrogen, renewable power, grid technologies, magnetics, gravity storage, and related experimental disputes. It also introduces the Health & Alternative Medicine category with a sourced Dr. Sebi dossier that separates cultural influence and potentially useful plant-forward nutrition from medically unverified cure claims. This version includes new custom dossier artwork, repaired relationships, standardized source cards, alias lookup, safer saved-data handling, refreshed application metadata, and updated offline caching.
 
 ---
 
@@ -300,7 +313,7 @@ If you find it useful:
 
 The Black Archive is open-source software licensed under the MIT License.
 
-See: [LICENSE](LICENSE)
+See: [LICENSE.md](LICENSE.md)
 
 ---
 

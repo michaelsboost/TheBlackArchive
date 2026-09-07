@@ -1,8 +1,8 @@
 {
   "name": "The Black Archive",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "The Black Archive | Comprehensive Encyclopedia of Claims & Testimony",
-  "description": "The most attractive description ever!",
+  "description": "An evidence-labeled research archive covering history, science, technology, UAP cases, disputed claims, and alternative medicine.",
   "author": "Michael Schwartz",
   "url": "https://michaelsboost.com/TheBlackArchive",
   "meta": "<script defer src=\"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js\"></script>",
